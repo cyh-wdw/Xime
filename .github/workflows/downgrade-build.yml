@@ -19,7 +19,11 @@ jobs:
       - name: Lower minSdk to 26
         run: |
           sed -i -E 's/minSdk\s*=\s*28/minSdk = 26/' app/build.gradle.kts
+          sed -i -E 's/minSdk\s*=\s*28/minSdk = 26/' plugin-core/build.gradle.kts
+          echo "--- app ---"
           grep -n "minSdk" app/build.gradle.kts
+          echo "--- plugin-core ---"
+          grep -n "minSdk" plugin-core/build.gradle.kts
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
